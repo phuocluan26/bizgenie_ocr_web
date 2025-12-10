@@ -1,0 +1,69 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 255, 255, 255;
+}
+
+body {
+  color: white;
+  background-color: #050505;
+  overflow-x: hidden;
+}
+
+/* 1. LƯỚI NỀN (Giảm độ mờ đi một chút để nền đen sâu hơn, làm nổi màu tím) */
+.bg-grid-white {
+  background-size: 50px 50px;
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+}
+
+/* 2. HIỆU ỨNG GLOW (Sáng hơn) */
+.purple-glow {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  /* Đổi từ tím đậm sang tím sáng (#8B5CF6) với độ trong suốt 30% */
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.3) 0%, rgba(0, 0, 0, 0) 70%);
+  border-radius: 50%;
+  filter: blur(100px);
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* 3. CHỮ TYPEWRITER (Gradient rực rỡ hơn) */
+.Typewriter__wrapper {
+  /* Gradient từ Cam sang Tím sáng */
+  background: linear-gradient(to right, #FF7F00, #C4B5FD);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: bold;
+}
+.Typewriter__cursor {
+  color: #FF7F00;
+}
+
+/* 4. CLASS TIỆN ÍCH CHO TEXT GRADIENT */
+.text-gradient {
+  background: linear-gradient(to right, #8B5CF6, #FF7F00);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
