@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { ScrollReveal } from "./ScrollReveal";
 
 const faqs = [
   {
@@ -28,33 +29,40 @@ export default function FAQ() {
   };
 
   return (
-    <section className="py-24 bg-black border-t border-white/5">
+    // SỬA: Đã xóa 'border-t border-white/5' và đảm bảo bg-transparent
+    <section className="py-24 bg-transparent relative z-10">
       <div className="container mx-auto px-6 max-w-3xl">
-        <h2 className="text-3xl font-bold text-center text-white mb-12">Câu Hỏi Thường Gặp</h2>
+        
+        <ScrollReveal>
+          <h2 className="text-3xl font-bold text-center text-white mb-12">Câu Hỏi Thường Gặp</h2>
+        </ScrollReveal>
         
         <div className="space-y-4">
           {faqs.map((faq, index) => (
-            <div key={index} className="border border-white/10 rounded-lg overflow-hidden transition-all duration-300 hover:border-white/30">
-              <button
-                onClick={() => toggleFAQ(index)}
-                className="w-full flex justify-between items-center p-5 text-left bg-white/5 hover:bg-white/10 transition text-gray-200"
-              >
-                <span className="font-semibold">{faq.question}</span>
-                <span className={`transform transition-transform duration-300 text-brand-purple ${openIndex === index ? 'rotate-180' : ''}`}>
-                  <i className="fas fa-chevron-down"></i>
-                </span>
-              </button>
-              
-              <div 
-                className={`transition-all duration-300 ease-in-out overflow-hidden ${
-                  openIndex === index ? 'max-h-40 opacity-100' : 'max-h-0 opacity-0'
-                }`}
-              >
-                <div className="p-5 text-gray-400 bg-black border-t border-white/5 text-sm leading-relaxed">
-                  {faq.answer}
+            <ScrollReveal key={index} delay={index * 0.1}>
+              {/* Thẻ con vẫn giữ viền nhẹ để phân tách nội dung, nhưng section bao ngoài thì không */}
+              <div className="border border-white/10 rounded-lg overflow-hidden transition-all duration-300 hover:border-white/30 bg-[#0a0a0a]/40 backdrop-blur-md">
+                <button
+                  onClick={() => toggleFAQ(index)}
+                  className="w-full flex justify-between items-center p-5 text-left hover:bg-white/5 transition text-gray-200"
+                >
+                  <span className="font-semibold">{faq.question}</span>
+                  <span className={`transform transition-transform duration-300 text-brand-purple ${openIndex === index ? 'rotate-180' : ''}`}>
+                    <i className="fas fa-chevron-down"></i>
+                  </span>
+                </button>
+                
+                <div 
+                  className={`transition-all duration-300 ease-in-out overflow-hidden ${
+                    openIndex === index ? 'max-h-40 opacity-100' : 'max-h-0 opacity-0'
+                  }`}
+                >
+                  <div className="p-5 text-gray-400 border-t border-white/5 text-sm leading-relaxed">
+                    {faq.answer}
+                  </div>
                 </div>
               </div>
-            </div>
+            </ScrollReveal>
           ))}
         </div>
       </div>

@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Features from "@/components/Features";
+import FAQ from "@/components/FAQ";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import Popup from "@/components/Popup";
@@ -49,6 +50,7 @@ export default function Home() {
       <Hero />
       <About />
       <Features />
+      <FAQ />
       <Contact />
       <Footer />
       <Popup />

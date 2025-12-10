@@ -67,3 +67,93 @@ body {
     transform: translateY(0);
   }
 }
+
+/* --- HIỆU ỨNG MỚI: TEXT SHIMMER (Chữ ánh kim) --- */
+@keyframes shimmer {
+  0% { background-position: 200% center; }
+  100% { background-position: -200% center; }
+}
+
+.animate-text-shimmer {
+  background: linear-gradient(
+    to right, 
+    #8B5CF6 20%, 
+    #FF7F00 40%, 
+    #FF7F00 60%, 
+    #8B5CF6 80%
+  );
+  background-size: 200% auto;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: shimmer 5s linear infinite;
+}
+
+/* --- HIỆU ỨNG BẦU TRỜI SAO (STARFIELD) - BẢN NÂNG CẤP SEAMLESS --- */
+
+.stars-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #050505;
+  overflow: hidden;
+  z-index: -50;
+  pointer-events: none;
+}
+
+/* Định nghĩa chung cho cả 3 lớp sao */
+.stars-1, .stars-2, .stars-3 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: transparent;
+  border-radius: 50%;
+}
+
+/* Tạo bản sao ::after để lấp đầy khoảng trống khi sao bay lên -> KHÔNG BAO GIỜ BỊ MẤT NỀN */
+.stars-1::after, .stars-2::after, .stars-3::after {
+  content: " ";
+  position: absolute;
+  top: 100vh; /* Bản sao nằm ngay dưới màn hình */
+  width: inherit;
+  height: inherit;
+  border-radius: inherit;
+  background: inherit;
+  box-shadow: inherit; /* Kế thừa toàn bộ vị trí sao của lớp chính */
+}
+
+/* LỚP 1: Sao nhỏ, bay chậm */
+.stars-1 {
+  width: 1px;
+  height: 1px;
+  box-shadow: 24vw 14vh #FFF, 55vw 88vh #FFF, 12vw 66vh #FFF, 88vw 22vh #FFF, 70vw 33vh #FFF, 30vw 90vh #FFF, 15vw 15vh #FFF, 95vw 55vh #FFF, 45vw 45vh #FFF, 60vw 10vh #FFF, 10vw 80vh #FFF, 80vw 5vh #FFF, 50vw 95vh #FFF, 25vw 25vh #FFF, 75vw 75vh #FFF, 5vw 50vh #FFF, 90vw 40vh #FFF, 35vw 60vh #FFF, 65vw 20vh #FFF, 40vw 85vh #FFF; 
+  animation: moveStars 100s linear infinite;
+  opacity: 0.5;
+}
+
+/* LỚP 2: Sao vừa, bay vừa */
+.stars-2 {
+  width: 2px;
+  height: 2px;
+  box-shadow: 10vw 10vh #ffffff, 90vw 20vh #ffffff, 30vw 30vh #ffffff, 70vw 40vh #ffffff, 50vw 50vh #ffffff, 20vw 60vh #ffffff, 80vw 70vh #ffffff, 40vw 80vh #ffffff, 60vw 90vh #ffffff, 15vw 95vh #ffffff;
+  animation: moveStars 150s linear infinite;
+  opacity: 0.8;
+}
+
+/* LỚP 3: Sao lớn, bay nhanh, có màu tím nhạt */
+.stars-3 {
+  width: 3px;
+  height: 3px;
+  box-shadow: 5vw 85vh #C4B5FD, 85vw 15vh #C4B5FD, 45vw 55vh #C4B5FD, 25vw 35vh #C4B5FD, 75vw 65vh #C4B5FD;
+  animation: moveStars 200s linear infinite;
+  opacity: 1;
+  filter: blur(1px);
+}
+
+/* Keyframes: Bay từ 0 lên -100vh (hết chiều cao màn hình) */
+@keyframes moveStars {
+  from { transform: translateY(0); }
+  to { transform: translateY(-100vh); } 
+}
