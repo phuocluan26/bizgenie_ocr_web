@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 interface ScrollRevealProps {
   children: React.ReactNode;
@@ -14,21 +14,34 @@ export const ScrollReveal = ({
   delay = 0, 
   className = "" 
 }: ScrollRevealProps) => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    // Kiểm tra kích thước màn hình sau khi render client-side
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile(); // Chạy ngay lần đầu
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  // Nếu là mobile: Render thẻ div thường (không animation) -> Cực nhẹ
+  if (isMobile) {
+    return <div className={className}>{children}</div>;
+  }
+
+  // Nếu là desktop: Render motion.div với hiệu ứng như cũ
   return (
     <motion.div
-      // Trạng thái ban đầu (khi chưa cuộn tới hoặc đã cuộn qua)
       initial="hidden"
-      // Trạng thái khi lọt vào khung hình
       whileInView="visible"
-      // once: false => Cho phép lặp lại hiệu ứng mỗi khi vào viewport
-      // margin: "-50px" => Thụt lùi điểm kích hoạt 50px để người dùng thấy rõ hiệu ứng
-      viewport={{ once: false, margin: "-50px" }}
-      
+      viewport={{ once: true, margin: "-50px" }} // Tối ưu: chỉ chạy 1 lần rồi thôi
       variants={{
-        hidden: { opacity: 0, y: 40 }, // Lúc ẩn: mờ và tụt xuống 40px
-        visible: { opacity: 1, y: 0 }  // Lúc hiện: rõ và về vị trí gốc
+        hidden: { opacity: 0, y: 40 },
+        visible: { opacity: 1, y: 0 }
       }}
-      
       transition={{ 
         duration: 0.6, 
         delay: delay, 
