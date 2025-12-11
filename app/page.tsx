@@ -10,6 +10,7 @@ import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import Popup from "@/components/Popup";
 
+// Trang chủ của ứng dụng
 export default function Home() {
   
   useEffect(() => {
@@ -28,7 +29,8 @@ export default function Home() {
       rootMargin: '0px',
       threshold: 0.1
     };
-
+    
+    // Tạo Intersection Observer để theo dõi các phần tử cần animation
     const observer = new IntersectionObserver((entries, observer) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -38,6 +40,7 @@ export default function Home() {
       });
     }, observerOptions);
 
+    // Chọn tất cả các phần tử có class 'fade-in-up' để áp dụng hiệu ứng
     const fadeElements = document.querySelectorAll('.fade-in-up');
     fadeElements.forEach(el => observer.observe(el));
 

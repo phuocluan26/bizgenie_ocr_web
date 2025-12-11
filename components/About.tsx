@@ -24,6 +24,7 @@ const MagicCard = ({ children, className = "" }: { children: React.ReactNode; cl
   );
 };
 
+// Component About
 export default function About() {
   return (
     <section id="about" className="py-20 md:py-32 bg-transparent relative overflow-visible">
@@ -36,11 +37,7 @@ export default function About() {
             <div className="inline-block mb-6 px-4 py-1.5 rounded-full border border-brand-purple/30 bg-brand-purple/10 text-brand-light text-xs font-bold uppercase tracking-wider shadow-[0_0_10px_rgba(167,139,250,0.3)]">
               Về Chúng Tôi
             </div>
-
-            {/* SỬA LỖI NHẢY DÒNG Ở ĐÂY: */}
-            {/* 1. text-2xl md:text-5xl: Giảm size chữ trên mobile để vừa khung hình */}
-            {/* 2. <br className="block md:hidden" />: Chủ động xuống dòng trước tên thương hiệu trên mobile để tên nằm trọn vẹn 1 hàng */}
-            {/* 3. whitespace-nowrap: Cấm ngắt dòng giữa các chữ trong tên thương hiệu */}
+            {/* Tiêu đề với hiệu ứng lấp lánh */}
             <h2 className="text-2xl md:text-5xl font-bold text-white mb-6 leading-snug">
               Không chỉ là OCR, đó là <br className="block md:hidden" /> 
               <span className="animate-text-shimmer whitespace-nowrap"> Smart Doc Digitize</span>

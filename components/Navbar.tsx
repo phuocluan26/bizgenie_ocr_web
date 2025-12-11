@@ -42,7 +42,7 @@ const Navbar = () => {
             />
           </div>
 
-          {/* TÊN CÔNG TY: Đã bỏ border-l (gạch dọc) */}
+          {/* TÊN CÔNG TY*/}
           <div className="flex flex-col justify-center pl-2 md:pl-4 h-8 md:h-10 overflow-hidden">
             <span className="text-[8px] sm:text-[10px] md:text-xs font-bold text-brand-purple tracking-wider uppercase leading-tight whitespace-nowrap drop-shadow-md truncate">
               CÔNG TY TNHH GIẢI PHÁP

@@ -18,14 +18,10 @@ export default function Contact() {
     const scriptURL = 'https://script.google.com/macros/s/AKfycbzV25e8D1ZHGcdT401gG33vbWwO82DBS7PklqpkQtIjIx5APgpxTaxz-hCHquUmjhE/exec';
 
     // --- 1. GỬI NGẦM (Fire & Forget) ---
-    // Không dùng 'await' để chặn giao diện. Gửi request và để nó tự chạy nền.
-    // mode: 'no-cors' giúp request đi nhanh hơn và tránh lỗi CORS strict.
     fetch(scriptURL, { method: 'POST', body: formData, mode: 'no-cors' })
       .catch(err => console.error("Lỗi gửi ngầm (không ảnh hưởng UX):", err));
 
     // --- 2. XỬ LÝ GIAO DIỆN LẠC QUAN (Optimistic UI) ---
-    // Giả lập thời gian chờ 1.5 giây để tạo cảm giác "đang xử lý" chuyên nghiệp
-    // Thay vì chờ 5 giây thật từ Google
     setTimeout(() => {
       setIsSubmitting(false);
       setShowSuccess(true);

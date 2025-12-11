@@ -5,11 +5,16 @@ import StarBackground from "@/components/StarBackground"; // <--- Import vào đ
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
+// Cấu hình metadata cho trang web
 export const metadata: Metadata = {
-  title: "Bizgenie AI OCR - Smart Doc Digitize",
+  title: "Bizgenie AI OCR - SDD",
   description: "Giải pháp số hóa tài liệu thông minh",
+  icons: {
+    icon: '/image/favicon.ico',
+  },
 };
 
+// RootLayout bao bọc toàn bộ ứng dụng
 export default function RootLayout({
   children,
 }: Readonly<{

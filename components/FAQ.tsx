@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { ScrollReveal } from "./ScrollReveal";
 
+// Dữ liệu FAQ
 const faqs = [
   {
     question: "Bizgenie OCR có xử lý được chữ viết tay tiếng Việt không?",
@@ -21,6 +22,7 @@ const faqs = [
   }
 ];
 
+// Component FAQ
 export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
@@ -29,7 +31,7 @@ export default function FAQ() {
   };
 
   return (
-    // SỬA: Thêm 'overflow-visible' để đồng bộ với Hero/About
+    //Thêm 'overflow-visible' để đồng bộ với Hero/About
     <section className="py-24 bg-transparent relative z-10 overflow-visible">
       <div className="container mx-auto px-6 max-w-3xl">
         

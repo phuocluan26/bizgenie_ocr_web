@@ -89,7 +89,7 @@ export default function Popup() {
                 </span>
                 
                 <h3 className="text-2xl md:text-3xl font-bold text-white tracking-tight">
-                  Trải nghiệm <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-purple to-brand-orange">BizGenie</span>
+                  Trải nghiệm <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-purple to-brand-orange">BizGenie OCR</span>
                 </h3>
                 
                 <p className="text-gray-400 text-sm mt-3 leading-relaxed">

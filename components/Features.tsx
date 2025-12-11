@@ -17,6 +17,7 @@ const MagicCard = ({ children, className = "" }: { children: React.ReactNode; cl
   );
 };
 
+// Component tính năng
 const Features = () => {
   return (
     <section id="features" className="py-12 md:py-20 bg-transparent relative scroll-mt-28">
