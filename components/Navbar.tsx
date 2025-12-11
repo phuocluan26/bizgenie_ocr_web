@@ -1,66 +1,80 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    // GIỮ NGUYÊN chiều cao h-20 (80px)
-    <nav className="fixed top-0 w-full z-50 bg-black/80 backdrop-blur-md border-b border-white/10 h-20 transition-all duration-300">
+    // 1. CONTAINER: Floating
+    <div className={`fixed left-0 w-full z-50 flex justify-center transition-all duration-300 ${scrolled ? 'top-4' : 'top-6'}`}>
       
-      {/* Container: Dùng h-full và flex items-center để căn giữa nội dung theo chiều dọc tuyệt đối */}
-      <div className="container mx-auto px-4 md:px-6 h-full flex justify-between items-center">
-        
+      {/* 2. THANH NAV: Tăng độ đậm nền (bg-black/60) để chữ nổi bật hơn trên nền sao */}
+      <nav className={`
+        relative flex items-center justify-between 
+        bg-[#050505]/30 backdrop-blur-xl border border-white/10 
+        shadow-[0_8px_32px_rgba(0,0,0,0.5)] 
+        transition-all duration-300 ease-out
+        ${scrolled ? 'w-[95%] xl:w-[1100px] h-16 rounded-full px-6' : 'w-[98%] xl:w-[1200px] h-20 rounded-full px-8'}
+      `}>
+
         {/* --- KHỐI BÊN TRÁI: LOGO & TÊN CÔNG TY --- */}
-        <div className="flex items-center h-full">
-          
-          {/* 1. LOGO: Tăng kích thước */}
-          {/* h-12 (48px) trên mobile, h-14 (56px) trên PC. Vẫn nằm gọn trong thanh Nav 80px */}
-          <div className="relative h-12 w-auto md:h-14 flex-shrink-0">
+        <a href="#" className="flex items-center h-full group gap-4">
+          {/* Logo */}
+          <div className={`relative transition-all duration-300 ${scrolled ? 'h-9' : 'h-11'} w-auto flex-shrink-0`}>
             <Image 
               src="/image/favicon.ico" 
               alt="Bizgenie Logo" 
               width={180} 
               height={80} 
-              className="h-full w-auto object-contain" 
+              className="h-full w-auto object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.4)]" 
               priority
             />
           </div>
 
-          {/* 2. TÊN CÔNG TY: To hơn và căn giữa */}
-          <div className="hidden lg:flex flex-col justify-center ml-4 pl-4 border-l border-gray-600 h-10">
-            <span className="text-[11px] md:text-xs font-bold text-brand-purple tracking-wider uppercase leading-tight whitespace-nowrap">
+          {/* TÊN CÔNG TY: Tăng size chữ lên text-xs (dễ đọc hơn), đổi màu thành text-white/90 */}
+          {/* Chuyển hidden lg:flex -> hidden md:flex để hiện sớm hơn trên tablet */}
+          <div className="hidden md:flex flex-col justify-center pl-4 border-l border-white/20 h-10">
+            <span className="text-xs font-bold text-brand-purple tracking-wider uppercase leading-tight whitespace-nowrap drop-shadow-md">
               CÔNG TY TNHH GIẢI PHÁP
             </span>
-            <span className="text-[11px] md:text-xs font-bold text-white tracking-wider uppercase leading-tight whitespace-nowrap">
+            <span className="text-xs font-bold text-white/90 tracking-wider uppercase leading-tight whitespace-nowrap drop-shadow-md">
               VÀ CÔNG NGHỆ BIZGENIE
             </span>
           </div>
-        </div>
+        </a>
 
-        {/* --- KHỐI GIỮA: MENU DESKTOP (Đã nâng cấp) --- */}
-        <div className="hidden md:flex items-center space-x-10">
+        {/* --- KHỐI GIỮA: MENU DESKTOP --- */}
+        {/* Đổi text-gray-300 thành text-white/80 để sáng hơn */}
+        <div className="hidden lg:flex items-center space-x-1">
           {['Về Bizgenie', 'Tính Năng', 'Liên Hệ'].map((item, index) => {
             const hrefs = ['#about', '#features', '#contact'];
             return (
               <a 
                 key={index}
                 href={hrefs[index]} 
-                // 1. Tăng kích thước chữ (text-base), in đậm (font-bold)
-                // 2. Thêm class 'group' để điều khiển hiệu ứng con bên trong
-                className="group relative text-base font-bold text-gray-400 transition-colors duration-300 hover:text-white py-2"
+                className="group relative px-5 py-2"
               >
-                {/* Nội dung chữ */}
-                {item}
+                {/* Text Menu: Màu trắng sáng, font bold */}
+                <span className="relative z-10 text-sm font-bold text-white/80 transition-colors duration-300 group-hover:text-white">
+                  {item}
+                </span>
 
-                {/* --- HIỆU ỨNG MỚI: Gạch chân chạy từ giữa ra --- */}
-                {/* Ban đầu w-0 (độ rộng bằng 0). Khi hover vào group thì w-full (rộng 100%) */}
-                <span className="absolute bottom-0 left-1/2 h-0.5 w-0 -translate-x-1/2 bg-gradient-to-r from-brand-purple to-brand-orange transition-all duration-300 ease-out group-hover:w-full group-hover:shadow-[0_0_10px_rgba(255,140,0,0.8)]"></span>
+                {/* HIỆU ỨNG: Gạch chân Gradient */}
+                <span className="absolute bottom-1 left-1/2 h-[2px] w-0 -translate-x-1/2 bg-gradient-to-r from-brand-purple to-brand-orange transition-all duration-300 ease-out group-hover:w-[80%] group-hover:shadow-[0_0_10px_rgba(255,140,0,0.8)]"></span>
                 
-                {/* Hiệu ứng Glow nhẹ cho chữ khi hover */}
-                <span className="absolute inset-0 blur-lg bg-white/20 opacity-0 group-hover:opacity-50 transition-opacity duration-300 -z-10"></span>
+                {/* HIỆU ỨNG: Glow nền nhẹ khi hover */}
+                <span className="absolute inset-0 rounded-full bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-0"></span>
               </a>
             )
           })}
@@ -70,39 +84,39 @@ const Navbar = () => {
         <div className="flex items-center gap-4">
           <a 
             href="#contact" 
-            className="hidden lg:inline-flex items-center justify-center bg-gradient-to-r from-brand-orange to-red-500 text-white px-6 py-2.5 rounded-full font-semibold text-sm shadow-lg hover:shadow-orange-500/30 hover:scale-105 transition transform duration-200"
+            className="hidden sm:inline-flex items-center justify-center bg-gradient-to-r from-brand-orange to-red-500 text-white px-6 py-2.5 rounded-full font-bold text-xs shadow-lg hover:shadow-orange-500/40 hover:scale-105 transition transform duration-200"
           >
             Demo Miễn Phí
           </a>
 
-          {/* Nút Hamburger cho Mobile */}
+          {/* Nút Hamburger: Hiện trên Mobile & Tablet nhỏ */}
           <button 
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden text-gray-300 hover:text-white p-2 focus:outline-none"
+            className="lg:hidden text-white/80 hover:text-white p-2 focus:outline-none transition-colors"
           >
-            <i className={`fas ${isOpen ? 'fa-times' : 'fa-bars'} text-2xl`}></i>
+            <i className={`fas ${isOpen ? 'fa-times' : 'fa-bars'} text-xl`}></i>
           </button>
         </div>
-      </div>
 
-      {/* --- MENU MOBILE (Slide down) --- */}
-      {isOpen && (
-        <div className="md:hidden absolute top-20 left-0 w-full bg-[#111] border-t border-white/10 shadow-2xl animate-[fade-in-up_0.3s_ease-out]">
-          <div className="flex flex-col p-6 space-y-4">
-            <a href="#about" onClick={() => setIsOpen(false)} className="text-gray-300 hover:text-brand-purple py-2 border-b border-gray-800">Về Bizgenie</a>
-            <a href="#features" onClick={() => setIsOpen(false)} className="text-gray-300 hover:text-brand-purple py-2 border-b border-gray-800">Tính Năng</a>
-            <a href="#contact" onClick={() => setIsOpen(false)} className="text-gray-300 hover:text-brand-purple py-2 border-b border-gray-800">Liên Hệ</a>
+        {/* --- MENU MOBILE (Dropdown) --- */}
+        {isOpen && (
+          <div className="absolute top-full left-0 mt-3 w-full bg-[#111]/95 backdrop-blur-2xl border border-white/20 rounded-2xl p-2 flex flex-col gap-1 shadow-2xl animate-[fade-in-up_0.2s_ease-out] overflow-hidden z-50">
+            <a href="#about" onClick={() => setIsOpen(false)} className="p-3 text-center text-sm font-bold text-white/80 hover:text-white hover:bg-white/10 rounded-xl transition">Về Bizgenie</a>
+            <a href="#features" onClick={() => setIsOpen(false)} className="p-3 text-center text-sm font-bold text-white/80 hover:text-white hover:bg-white/10 rounded-xl transition">Tính Năng</a>
+            <a href="#contact" onClick={() => setIsOpen(false)} className="p-3 text-center text-sm font-bold text-white/80 hover:text-white hover:bg-white/10 rounded-xl transition">Liên Hệ</a>
+            <div className="h-[1px] bg-white/10 mx-2 my-1"></div>
             <a 
               href="#contact" 
               onClick={() => setIsOpen(false)}
-              className="bg-brand-orange text-white text-center py-3 rounded-lg font-bold mt-2"
+              className="p-3 text-center text-sm font-bold text-brand-orange hover:bg-white/5 rounded-xl transition"
             >
-              Demo Miễn Phí
+              Đăng Ký Demo
             </a>
           </div>
-        </div>
-      )}
-    </nav>
+        )}
+
+      </nav>
+    </div>
   );
 };
 

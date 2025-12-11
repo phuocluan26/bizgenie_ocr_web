@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from 'react';
-import { ScrollReveal } from './ScrollReveal'; // Import component hiệu ứng
+import { ScrollReveal } from './ScrollReveal';
 
 export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -29,14 +29,17 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-24 bg-transparent relative overflow-hidden">
-      {/* Background Decor */}
+    // SỬA: Đổi 'overflow-hidden' thành 'overflow-visible'
+    // Để đốm sáng (glow) bên dưới có thể lan tỏa lên trên phần FAQ, xóa nhòa ranh giới
+    <section id="contact" className="py-24 bg-transparent relative overflow-visible border-none">
+      
+      {/* Background Decor - Giờ đây nó sẽ tỏa sáng lan sang các phần xung quanh */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-orange/5 rounded-full blur-[120px] pointer-events-none"></div>
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="bg-white/5 border border-white/10 rounded-3xl p-8 md:p-12 grid md:grid-cols-2 gap-12 items-center backdrop-blur-sm">
           
-          {/* CỘT TRÁI: Thông tin (Xuất hiện trước) */}
+          {/* CỘT TRÁI */}
           <ScrollReveal>
             <div>
               <div className="inline-block px-3 py-1 mb-4 border border-brand-purple/50 rounded-full bg-brand-purple/10 text-brand-purple text-xs font-bold uppercase tracking-wider">
@@ -71,7 +74,7 @@ export default function Contact() {
             </div>
           </ScrollReveal>
           
-          {/* CỘT PHẢI: Form (Xuất hiện sau 0.2s) */}
+          {/* CỘT PHẢI: Form */}
           <ScrollReveal delay={0.2}>
             <form onSubmit={handleSubmit} className="space-y-5 bg-black/40 p-6 rounded-2xl border border-white/5">
               <h3 className="text-xl font-bold text-white mb-2">Đăng ký tư vấn miễn phí</h3>

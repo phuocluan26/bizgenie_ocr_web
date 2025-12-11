@@ -7,9 +7,14 @@ import { ScrollReveal } from './ScrollReveal';
 
 const Hero = () => {
   return (
-    <section className="relative min-h-screen flex items-center pt-32 overflow-hidden">
+    // SỬA 1: Đổi 'overflow-hidden' thành 'overflow-visible'
+    // Lý do: Để các đốm sáng (glow) có thể lan tỏa xuống phần About bên dưới, xóa nhòa ranh giới
+    <section className="relative min-h-screen flex items-center pt-32 overflow-visible">
       
-      {/* 2. ĐỐM SÁNG TÍM (DI CHUYỂN TỰ DO) */}
+      {/* SỬA 2: XÓA BỎ lớp bg-grid-white này đi */}
+      {/* <div className="absolute inset-0 bg-grid-white pointer-events-none"></div> */}
+      
+      {/* Đốm sáng tím (Di chuyển tự do) */}
       <motion.div 
         animate={{ 
           x: [0, 30, -20, 0], 
@@ -20,6 +25,7 @@ const Hero = () => {
         className="purple-glow top-[-10%] left-[10%]"
       ></motion.div>
 
+      {/* Đốm sáng cam ở góc dưới - Quan trọng: Nó sẽ lan sang phần About nhờ overflow-visible */}
       <motion.div 
         animate={{ 
           x: [0, -40, 20, 0], 
@@ -62,7 +68,7 @@ const Hero = () => {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4">
-              {/* Nút chính: Màu cam rực rỡ */}
+              {/* Nút chính */}
               <a href="#contact" className="px-8 py-4 bg-gradient-to-r from-brand-orange to-red-500 text-white rounded-lg font-bold shadow-[0_0_20px_rgba(255,140,0,0.5)] hover:shadow-[0_0_30px_rgba(255,140,0,0.7)] transition transform hover:-translate-y-1 text-center">
                 Dùng Thử Miễn Phí
               </a>
@@ -70,7 +76,7 @@ const Hero = () => {
           </div>
         </ScrollReveal>
 
-        {/* Video Demo - Khung kính trong suốt */}
+        {/* Video Demo */}
         <ScrollReveal delay={0.2}>
           <div className="relative group">
             <div className="absolute -inset-1 bg-gradient-to-r from-brand-purple to-brand-orange rounded-2xl blur opacity-30 group-hover:opacity-70 transition duration-1000"></div>
