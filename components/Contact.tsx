@@ -29,15 +29,13 @@ export default function Contact() {
   };
 
   return (
-    // SỬA: Đổi 'overflow-hidden' thành 'overflow-visible'
-    // Để đốm sáng (glow) bên dưới có thể lan tỏa lên trên phần FAQ, xóa nhòa ranh giới
-    <section id="contact" className="py-24 bg-transparent relative overflow-visible border-none">
+    <section id="contact" className="py-16 md:py-24 bg-transparent relative overflow-visible border-none">
       
-      {/* Background Decor - Giờ đây nó sẽ tỏa sáng lan sang các phần xung quanh */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-orange/5 rounded-full blur-[120px] pointer-events-none"></div>
+      {/* Background Decor - Responsive Size */}
+      <div className="absolute top-0 right-0 w-[80vw] md:w-[500px] h-[80vw] md:h-[500px] bg-brand-orange/5 rounded-full blur-[80px] md:blur-[120px] pointer-events-none"></div>
 
       <div className="container mx-auto px-6 relative z-10">
-        <div className="bg-white/5 border border-white/10 rounded-3xl p-8 md:p-12 grid md:grid-cols-2 gap-12 items-center backdrop-blur-sm">
+        <div className="bg-white/5 border border-white/10 rounded-3xl p-6 md:p-12 grid md:grid-cols-2 gap-12 items-center backdrop-blur-sm">
           
           {/* CỘT TRÁI */}
           <ScrollReveal>
@@ -46,7 +44,7 @@ export default function Contact() {
                 Liên Hệ Ngay
               </div>
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Sẵn sàng chuyển đổi số?</h2>
-              <p className="text-gray-400 mb-10 leading-relaxed">
+              <p className="text-gray-400 mb-8 md:mb-10 leading-relaxed text-sm md:text-base">
                 Đừng để giấy tờ kìm hãm tốc độ phát triển của bạn. Hãy để BizGenie giúp bạn tự động hóa quy trình ngay hôm nay.
               </p>
               
@@ -102,7 +100,7 @@ export default function Contact() {
 
               {showSuccess && (
                 <div className="p-3 bg-green-500/10 border border-green-500/20 text-green-400 rounded-lg text-sm flex items-center">
-                  <i className="fas fa-check-circle mr-2"></i> Gửi thành công! Chúng tôi sẽ liên hệ sớm.
+                  <i className="fas fa-check-circle mr-2"></i> Gửi thành công!
                 </div>
               )}
 

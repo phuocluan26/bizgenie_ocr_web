@@ -2,20 +2,19 @@ import React from 'react';
 
 export default function Footer() {
   return (
-    <footer className="bg-[#111111] text-gray-300 py-12 border-t border-gray-800 font-sans">
+    <footer className="bg-[#111111] text-gray-300 py-8 md:py-12 border-t border-gray-800 font-sans">
       <div className="container mx-auto px-6">
         
         {/* --- PHẦN TRÊN: GRID 4 CỘT --- */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
 
-          {/* CỘT 1: THÔNG TIN CÔNG TY */}
+          {/* CỘT 1 */}
           <div className="space-y-4">
-            {/* Logo Text - Hiệu ứng Glow nhẹ giống ảnh */}
             <h3 className="text-2xl font-bold text-brand-orange mb-2" style={{ textShadow: '0 0 15px rgba(255, 140, 0, 0.4)' }}>
               BizGenie
             </h3>
             
-            <p className="text-sm font-bold uppercase text-gray-400 leading-relaxed">
+            <p className="text-xs md:text-sm font-bold uppercase text-gray-400 leading-relaxed">
               CÔNG TY TNHH GIẢI PHÁP & CÔNG NGHỆ BIZGENIE
             </p>
 
@@ -27,77 +26,43 @@ export default function Footer() {
               
               <div className="flex items-center gap-3">
                 <i className="fas fa-envelope text-brand-orange"></i>
-                <a href="mailto:invoice@bizgenie.vn" className="hover:text-white transition">
+                <a href="mailto:contact@bizgenie.vn" className="hover:text-white transition">
                   contact@bizgenie.vn
                 </a>
               </div>
 
-              <div className="pl-7"> {/* Padding left để thẳng hàng với text bên trên */}
+              <div className="pl-7">
                 <span className="block">MST: 0318961809</span>
               </div>
             </div>
           </div>
 
-          {/* CỘT 2: LIÊN KẾT NHANH */}
+          {/* CỘT 2 */}
           <div>
-            <h4 className="text-brand-orange font-bold mb-6">Liên kết nhanh</h4>
+            <h4 className="text-brand-orange font-bold mb-4 md:mb-6">Liên kết nhanh</h4>
             <ul className="space-y-3 text-sm text-gray-400">
-              <li>
-                <a href="#" className="hover:text-white hover:translate-x-1 transition-transform inline-block">
-                  Trang chủ
-                </a>
-              </li>
-              <li>
-                <a href="#features" className="hover:text-white hover:translate-x-1 transition-transform inline-block">
-                  Bảng giá
-                </a>
-              </li>
-              <li>
-                <a href="#contact" className="hover:text-white hover:translate-x-1 transition-transform inline-block">
-                  Liên hệ
-                </a>
-              </li>
+              <li><a href="#" className="hover:text-white inline-block">Trang chủ</a></li>
+              <li><a href="#features" className="hover:text-white inline-block">Bảng giá</a></li>
+              <li><a href="#contact" className="hover:text-white inline-block">Liên hệ</a></li>
             </ul>
           </div>
 
-          {/* CỘT 3: PHÁP LÝ */}
+          {/* CỘT 3 */}
           <div>
-            <h4 className="text-brand-orange font-bold mb-6">Pháp lý</h4>
+            <h4 className="text-brand-orange font-bold mb-4 md:mb-6">Pháp lý</h4>
             <ul className="space-y-3 text-sm text-gray-400">
-              <li>
-                <a href="#" className="hover:text-white hover:translate-x-1 transition-transform inline-block">
-                  Điều khoản sử dụng
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-white hover:translate-x-1 transition-transform inline-block">
-                  Chính sách bảo mật
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-white hover:translate-x-1 transition-transform inline-block">
-                  Chính sách cookie
-                </a>
-              </li>
+              <li><a href="#" className="hover:text-white inline-block">Điều khoản sử dụng</a></li>
+              <li><a href="#" className="hover:text-white inline-block">Chính sách bảo mật</a></li>
+              <li><a href="#" className="hover:text-white inline-block">Chính sách cookie</a></li>
             </ul>
           </div>
 
-          {/* CỘT 4: THEO DÕI CHÚNG TÔI */}
+          {/* CỘT 4 */}
           <div>
-            <h4 className="text-brand-orange font-bold mb-6">Theo dõi chúng tôi</h4>
+            <h4 className="text-brand-orange font-bold mb-4 md:mb-6">Theo dõi chúng tôi</h4>
             <p className="text-sm text-gray-400 mb-4">
               Chưa có liên kết mạng xã hội
             </p>
-            {/* Nếu sau này có MXH thì mở comment này ra dùng */}
-            {/* <div className="flex space-x-4">
-              <a href="#" className="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center hover:bg-brand-orange hover:text-white transition">
-                <i className="fab fa-facebook-f"></i>
-              </a>
-              <a href="#" className="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center hover:bg-brand-orange hover:text-white transition">
-                <i className="fab fa-linkedin-in"></i>
-              </a>
-            </div> 
-            */}
           </div>
 
         </div>
